@@ -1,5 +1,5 @@
-import { Injectable }              from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -31,6 +31,24 @@ export class AppService {
 
   getPriceList() {
     return this.httpGet('./ssl.json');
+  }
+
+
+
+  public getDescription(id: string) {
+    return this.httpGetDesc('./ssl.json', id);
+  }
+
+  private httpGetDesc(url: string, id: string) {
+    let args = new RequestOptions({params: {id: id}});
+    return this.http.get(url, args)
+      .map(this.handleResponse.bind(this))
+      .catch(this.handleError);
+  }
+
+  handleResponseDesc(res: Response): any {
+    let body = res.json() || {};
+    return body;
   }
 }
 

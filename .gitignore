@@ -1,0 +1,12 @@
+
+.git
+.idea
+node_modules
+z_launch_server.bat
+
+*.js
+*.js.map
+src/app/shared/**/.*js
+src/app/shared/**/.*js.map
+src/app/components/**/.*js
+src/app/components/**/.*js.map
