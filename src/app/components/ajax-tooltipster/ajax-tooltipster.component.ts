@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PlatformLocation } from '@angular/common';
 import { AppService } from '../../app.service';
 
@@ -10,21 +10,14 @@ import { AppService } from '../../app.service';
 export class AjaxTooltipsterComponent implements OnInit {
 	@Input() descId: string;
 
-	public app_base_url: string;
 	public tooltipText: string = null;
 	public showTooltip: boolean = false;
 	public loading: boolean = false;
-	
-	private getDescEvent = new EventEmitter<any>();
 
 	constructor(private platformLocation: PlatformLocation, private appService: AppService) {}
 
 	ngOnInit() {
-		this.app_base_url = this.platformLocation['location']['href'];
-
-		this.getDescEvent.subscribe((data: any) => {
-			this.tooltipText = data['description_ru'];
-		});
+		
 	}
 
 	getDescription(id: string) {
@@ -34,8 +27,7 @@ export class AjaxTooltipsterComponent implements OnInit {
 		this.loading = true;
 		this.appService.getDescription(id).subscribe((data: any) => {
 			this.loading = false;
-			let desc = data['pricelist'][id];
-			this.getDescEvent.emit(desc);
+			this.tooltipText = data['pricelist'][id]['description_ru'];
 		});
 	}
 }

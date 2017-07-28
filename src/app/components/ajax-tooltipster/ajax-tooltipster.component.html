@@ -9,16 +9,11 @@
 		class="tooltip-position opacity-animation-fade"
 	>
 		<div style="margin-top:2px">
-			<div class="arrow_box" [sanitizeHtml]="tooltipText"></div>
+			<div class="arrow_box tooltip-shadow" [sanitizeHtml]="tooltipText"></div>
 		</div>
 	</div>
 
-	<!-- Индикатор загрузки -->
-	<div
-		*ngIf="loading"
-		class="loading-indicator-position opacity-animation-fade"
-		[ngClass]="{show: showTooltip}"
-		[ngStyle]="{backgroundImage: ('url(' + app_base_url + 'assets/images/ajax-loader.gif)')}"
-		style="position:absolute; margin-top:2px; margin-left:3px; width:16px; height:16px; background-repeat: no-repeat;"
-	></div>
+    <div *ngIf="loading" class="loading-indicator-position opacity-animation-fade" [ngClass]="{show: showTooltip}">
+        <loading-indicator></loading-indicator>
+    </div>
 </div>

@@ -45,10 +45,5 @@ export class AppService {
       .map(this.handleResponse.bind(this))
       .catch(this.handleError);
   }
-
-  handleResponseDesc(res: Response): any {
-    let body = res.json() || {};
-    return body;
-  }
 }
 
